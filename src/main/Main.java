@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Main {
     public static final int REGISTER = 1;
+    public static final int LIST = 2;
     public static final int OUT = 5;
 
     private static List<Student> students;
@@ -43,6 +44,8 @@ public class Main {
             case REGISTER:
                 registerStudent();
                 break;
+            case LIST: listStudents(students);
+                break;
             case OUT:
                 Output.logout();
                 break;
@@ -53,6 +56,15 @@ public class Main {
     private static void registerStudent() {
         Object[] data = askData();
         students.add(new Student((String) data[0], (String) data[1], (int) data[2], (String) data[3], (String) data[4], (float) data[5], (String) data[6], (float) data[7]));
+    }
+
+    private static void listStudents(List<Student> students) {
+        iterator = students.iterator();
+        Output.listHeaderStudents();
+        while (iterator.hasNext()) {
+            Student student = iterator.next();
+            Output.listStudents(student);
+        }
     }
 
     private static Object[] askData() {
