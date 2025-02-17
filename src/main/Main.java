@@ -12,6 +12,7 @@ import java.util.List;
 public class Main {
     public static final int REGISTER = 1;
     public static final int LIST = 2;
+    public static final int DELETE = 3;
     public static final int OUT = 5;
 
     private static List<Student> students;
@@ -46,6 +47,8 @@ public class Main {
                 break;
             case LIST: listStudents(students);
                 break;
+            case DELETE: deleteStudent();
+            break;
             case OUT:
                 Output.logout();
                 break;
@@ -64,6 +67,21 @@ public class Main {
         while (iterator.hasNext()) {
             Student student = iterator.next();
             Output.listStudents(student);
+        }
+    }
+
+    private static void deleteStudent() {
+        iterator = students.iterator();
+        boolean found = false;
+        String toFoundDNI;
+        Output.askDNI();
+        toFoundDNI = Input.getText();
+        while(iterator.hasNext() && !found) {
+            Student student = iterator.next();
+            if(student.getDNI().equals(toFoundDNI)){
+                iterator.remove();
+                found = true;
+            }
         }
     }
 
