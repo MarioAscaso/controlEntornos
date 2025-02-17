@@ -21,5 +21,9 @@ public class Student {
         this.mark2 = mark2;
     }
 
+    public  String getDNI() {
+        return DNI;
+    }
+
 }
 
